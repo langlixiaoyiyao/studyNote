@@ -53,6 +53,8 @@ vue3的监视watch只能监视以下四种类型
 
 #### watch监视的是ref定义或者reactive定义的对象中的某个属性的时候
 
+
+
 ## vue2中的监视属性
 ```
 <template>
