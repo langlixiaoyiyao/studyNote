@@ -238,3 +238,113 @@ const router = createRouter({
 ```
 
 ### vue2中的使用方式
+#### 基本使用
+```
+// src/router/index.js
+import VueRouter from 'vue-router';
+import Home from '@/views/Home.vue';
+const router = VueRouter({
+    mode: 'history',    // mode默认是hash模式
+    routes: [
+        {
+            path: '/home',
+            component: Home,
+        }
+    ]
+
+})
+export default router;
+```
+```
+// src/main.js
+import Vue from 'vue'
+import App from './App.vue'
+import VueRouter from 'vue-router'
+import router from '@/router'
+
+Vue.config.productionTip = false
+Vue.use(VueRouter);
+new Vue({
+  render: h => h(App),
+  router
+}).$mount('#app');
+```
+```
+// src/app.vue
+<template>
+    <div>
+        <router-view></router-view>
+    </div>
+</template>
+<script>
+export default {
+    name: 'App',
+}
+</script>
+```
+
+#### 路由跳转
+路由组件配置  
+```
+// src/router/index.js
+import VueRouter from 'vue-router';
+import Home from '@/views/Home.vue';
+const router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+            path: '/home',
+            name: 'home',
+            component: Home
+        }
+    ]
+});
+export default router;
+```
+##### 使用router-link跳转
+###### 使用路径跳转
+```
+// src/app.vue
+<template>
+    <div>
+        <router-link to='/home'>首页</router-link>
+    </div>
+</template>
+```
+###### 命名式路由跳转
+```
+// src/app.vue
+<template>
+    <div>
+        <router-link :to='{name: "home"}'>首页</router-link>
+    </div>
+</template>
+```
+##### 编程式路由跳转
+```
+// src/App.vue
+<script>
+export default {
+    name: 'App',
+    data() {
+        return {};
+    },
+    methods: {
+        goHome() {
+            this.$router.push('/home');
+            this.$router.push({name: 'home'});
+        }
+    }
+}
+</script>
+```
+
+#### 路由参数
+与vue3一致，这里不做说明
+
+#### 嵌套路由
+与vue3一致，这里不做说明
+
+#### 重定向
+与vue3一致，这里不做说明
+
